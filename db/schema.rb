@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_21_074045) do
+ActiveRecord::Schema.define(version: 2020_03_21_075031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2020_03_21_074045) do
   end
 
   create_table "communities", force: :cascade do |t|
-    t.string "name"
-    t.string "slug"
+    t.string "name", null: false
+    t.string "slug", null: false
     t.string "public_description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 2020_03_21_074045) do
     t.index ["community_id", "user_id"], name: "index_community_moderators_on_community_id_and_user_id", unique: true
     t.index ["community_id"], name: "index_community_moderators_on_community_id"
     t.index ["user_id"], name: "index_community_moderators_on_user_id"
+  end
+
+  create_table "features", force: :cascade do |t|
+    t.string "key"
+    t.datetime "disabled_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "streets", force: :cascade do |t|
