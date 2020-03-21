@@ -4,5 +4,9 @@
     <h1 class="mb-5">
       <%= yield :title %>
     </h1>
+
+    <% if content_for(:subtitle) %>
+    <h3 class="mb-5"><%= yield :subtitle %></h3>
+    <% end %>
   </div>
 </div>

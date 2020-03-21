@@ -32,3 +32,6 @@
 en:
   application:
     unauthorized: You can't access this.
+  community_memberships:
+    create:
+      success: Welcome to the community!

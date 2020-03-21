@@ -1,0 +1,12 @@
+<div class="media mt-2 mb-2">
+  <img class="mr-3 rounded-image" src="https://place-hold.it/72" alt="Generic placeholder image">
+  <div class="media-body">
+    <h5 class="mt-0">Hey, I'm <%= member.name %></h5>
+    <p>
+      I can assist with:
+      <ul>
+        <% member.capabilities.each { |cap| %><%= content_tag(:li, cap.name) %> <% } %>
+      </ul>
+    </p>
+  </div>
+</div>

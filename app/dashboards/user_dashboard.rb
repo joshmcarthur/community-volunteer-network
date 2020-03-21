@@ -36,7 +36,9 @@ class UserDashboard < Administrate::BaseDashboard
     invitation_sent_at: Field::DateTime,
     invitation_accepted_at: Field::DateTime,
     invitation_limit: Field::Number,
-    invitations_count: Field::Number
+    invitations_count: Field::Number,
+    password: Field::Password,
+    password_confirmation: Field::Password
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -78,32 +80,10 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    invited_by
-    community_memberships
-    communities
-    community_moderators
-    moderated_communities
-    capabilities
     name
     email
-    encrypted_password
-    reset_password_token
-    reset_password_sent_at
-    remember_created_at
-    sign_in_count
-    current_sign_in_at
-    last_sign_in_at
-    current_sign_in_ip
-    last_sign_in_ip
-    failed_attempts
-    unlock_token
-    locked_at
-    invitation_token
-    invitation_created_at
-    invitation_sent_at
-    invitation_accepted_at
-    invitation_limit
-    invitations_count
+    password
+    password_confirmation
   ].freeze
 
   # COLLECTION_FILTERS

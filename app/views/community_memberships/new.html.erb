@@ -1,0 +1,45 @@
+<% provide(:title, "Welcome to the community, #{current_user.name}") %>
+<% provide(:subtitle, "Before you join the #{@community.name} community, we need some information from you.") %>
+<% content_for(:masthead, render("application/default_masthead")) %>
+
+<div class="card mt-5 mb-5 col-lg-6 col-md-8 offset-md-2 offset-lg-3">
+  <div class="card-body">
+    <%= form_with model: @community_membership, url: community_community_memberships_path, method: :post do |f| %>
+      <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, name: nil, required: true, readonly: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, name: nil, required: true, readonly: true, class: "form-control" %>
+      <p class="form-text text-muted">
+        We don't share your email, but will use it to contact you
+        with opportunities to receive or give assistance.
+      </p>
+      </div>
+
+      <div class="form-group">
+      <%= f.label :street_id %>
+      <%= f.text_field :street_id, class: "form-control" %>
+      <p class="form-text text-muted">
+        <strong>optional.</strong> We don't need to know your exact address, but knowing
+        what street you live on allows us to find opportunities that
+        are close to you, and to help to connect you with other volunteers
+        that are close to you.</p>
+      </div>
+
+      <div class="form-group">
+      <%= f.label :capability_ids %>
+      <%= f.collection_select :capability_ids, @capabilities, :id, :name, {}, multiple: true, data: { selectize: '{"plugins": ["remove_button"], "selectOnTab": true}' }, class: "form-control" %>
+      <p class="form-text text-muted">
+        Knowing how you can help others allows us to match
+        you up with people seeking this kind of assistance.
+        <br />
+        You can change these later, they're not set in stone.
+      </div>
+
+      <%= f.submit "Join the #{@community.name} community", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+</div>

@@ -53,7 +53,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <% current_user.communities.each do |comm| %>
-                <%= link_to community.name, community_path(community.slug), class: "dropdown-item" %>
+                <%= link_to comm.name, community_path(comm.slug), class: "dropdown-item" %>
               <% end %>
 
               <%= link_to("Discover more communities", communities_path, class: "dropdown-item") %>

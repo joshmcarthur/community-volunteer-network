@@ -1,0 +1,6 @@
+<% provide(:title, @community.name) %>
+<% content_for(:masthead, render("application/default_masthead")) %>
+
+<div class="mt-5 mb-5">
+<%= render partial: "community_memberships/member", collection: @community.members %>
+</div>
