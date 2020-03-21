@@ -30,7 +30,7 @@
       </div>
 
       <div class="form-group">
-      <%= f.label :capability_ids %>
+      <%= f.label :capability_ids, "How are you able to help?" %>
       <%= f.collection_select :capability_ids, @capabilities, :id, :name, {}, multiple: true, data: { selectize: '{"plugins": ["remove_button"], "selectOnTab": true}' }, class: "form-control" %>
       <p class="form-text text-muted">
         Knowing how you can help others allows us to match
