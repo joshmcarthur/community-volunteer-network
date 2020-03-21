@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :capability do
-    name { "MyString" }
-    description { "MyText" }
-    parent { nil }
+    name { Faker::Job.title }
+    description { Faker::Lorem.sentence }
   end
 end

@@ -18,6 +18,7 @@ gem "devise_invitable"
 gem "devise-bootstrap-views"
 
 gem "rack-canonical-host", "~> 0.2.3"
+gem "administrate"
 
 group :development do
   gem "bundler-audit", require: false

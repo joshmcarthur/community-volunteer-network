@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+    resources :communities
+    resources :features
+    resources :streets
+    resources :community_memberships
+    resources :community_moderators
+    resources :capabilities
+
+    root to: "users#index"
+  end
   devise_for :users
   ##
   # Workaround a "bug" in lighthouse CLI
