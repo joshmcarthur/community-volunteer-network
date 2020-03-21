@@ -13,6 +13,7 @@ gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
 gem "lograge"
 
+gem "pundit"
 gem "devise"
 gem "devise_invitable"
 gem "devise-bootstrap-views"

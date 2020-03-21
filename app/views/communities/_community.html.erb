@@ -1,0 +1,10 @@
+<div class="media">
+  <img src="https://place-hold.it/72" class="rounded-circle  mr-3" alt="<%= community.name %>'s image">
+  <div class="media-body">
+    <h5 class="mt-0"><%= community.name %></h5>
+    <%= simple_format community.public_description %>
+    <%= link_to new_community_community_memberships_path(community_slug: community.slug), class: "btn btn-primary" do %>
+      Join this community
+    <% end %>
+  </div>
+</div>

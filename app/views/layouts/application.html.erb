@@ -45,12 +45,31 @@
         <% if !user_signed_in? %>
           <a class="btn btn-primary" href="<%= new_user_session_path %>">Sign In</a>
         <% else %>
-          <div>
+        <div>
+        <ul class="list-inline">
+          <li class="list-inline-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Communities
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% current_user.communities.each do |comm| %>
+                <%= link_to community.name, community_path(community.slug), class: "dropdown-item" %>
+              <% end %>
+
+              <%= link_to("Discover more communities", communities_path, class: "dropdown-item") %>
+            </div>
+          </li>
+
+          <li class="list-inline-item">
           <span class="navbar-text pr-2">
             <%= current_user.name %>
           </span>
           <%= link_to t(".sign_out"), destroy_user_session_path, class: "btn btn-outline-secondary btn-sm", method: :delete %>
+          </li>
+          </ul>
+          </div>
         <% end %>
+        </div>
       </div>
     </nav>
 
@@ -67,7 +86,9 @@
     </header>
     <% end %>
 
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
 
 
     <!-- Footer -->
