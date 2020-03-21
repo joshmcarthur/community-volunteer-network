@@ -9,11 +9,11 @@
 
  <div class="card-body">
 <h5 class="card-title"><%= t(".forgot_your_password") %></h5>
-  <%= bootstrap_devise_error_messages! %>
 
   <div class="form-group">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+    <%= f.error :email %>
   </div>
 
   <div class="form-group">

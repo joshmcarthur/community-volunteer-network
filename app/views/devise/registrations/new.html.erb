@@ -9,11 +9,10 @@
   <div class="card-body">
         <h5 class="card-title"><%= t(".sign_up") %></h5>
 
-  <%= bootstrap_devise_error_messages! %>
-
   <div class="form-group">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+    <%= f.error :email %>
   </div>
 
   <div class="form-group">
@@ -23,11 +22,16 @@
     <% if @minimum_password_length %>
       <small class="form-text text-muted"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></small>
     <% end %>
+
+    <%= f.error :password %>
+
   </div>
 
   <div class="form-group">
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control' %>
+    <%= f.error :password_confirmation %>
+
   </div>
 
   <div class="form-group">
