@@ -9,4 +9,8 @@ class User < ApplicationRecord
   has_many :community_moderators, dependent: :destroy
   has_many :moderated_communities, through: :community_moderators, source: :community
   has_many :capabilities, through: :community_memberships, source: :capabilities
+
+  def name
+    super.presence || email.split("@").first
+  end
 end
