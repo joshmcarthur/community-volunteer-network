@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
     root to: "users#index"
   end
+
   devise_for :users
   ##
   # Workaround a "bug" in lighthouse CLI
@@ -34,6 +35,12 @@ Rails.application.routes.draw do
                     .to_s
     get "/asset-manifest.json", to: redirect(manifest_path)
   end
+
+  resources :communities, path: :c, param: :slug, only: %i[show] do
+    resource :community_memberships, path: :membership, shallow: true
+  end
+
+  resources :communities, only: %i[index]
 
   get "privacy", to: "home#privacy"
   get "terms", to: "home#terms"
