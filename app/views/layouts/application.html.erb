@@ -55,6 +55,7 @@
               <% current_user.communities.each do |comm| %>
                 <%= link_to comm.name, community_path(comm.slug), class: "dropdown-item" %>
               <% end %>
+              <div class="dropdown-divider"></div>
 
               <%= link_to("Discover more communities", communities_path, class: "dropdown-item") %>
             </div>
