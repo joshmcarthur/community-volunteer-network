@@ -1,0 +1,2 @@
+class CommunityMembershipsController < AuthenticatedController
+end
