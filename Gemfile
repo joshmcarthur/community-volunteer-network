@@ -19,6 +19,7 @@ gem "devise-bootstrap-views"
 
 gem "rack-canonical-host", "~> 0.2.3"
 gem "administrate"
+gem "factory_bot_rails"
 
 group :development do
   gem "bundler-audit", require: false
@@ -36,7 +37,6 @@ end
 
 group :development, :test do
   gem "rspec-rails"
-  gem "factory_bot_rails"
   gem "pry-rails"
   gem "pry-byebug"
   gem "faker"
