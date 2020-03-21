@@ -1,0 +1,42 @@
+{
+  "name": "community_volunteer_network",
+  "private": true,
+  "dependencies": {
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "4.2.2",
+    "turbolinks": "^5.2.0"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-eslint-comments": "^3.1.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "lighthouse": "^5.6.0",
+    "prettier": "^1.19.1",
+    "prettier-config-ackama": "^0.1.2",
+    "stylelint": "^13.2.1",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-scss": "^3.16.0",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "prettier": "prettier-config-ackama",
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11"
+  ],
+  "scripts": {
+    "js-lint": "eslint . --ignore-pattern '!.eslintrc.js' --ext js,ts,tsx,jsx",
+    "js-lint-fix": "eslint . --ignore-pattern '!.eslintrc.js' --ext js,ts,tsx,jsx --fix",
+    "format-check": "prettier --check './**/*.{css,scss,json,md,js,ts,tsx,jsx}'",
+    "format-fix": "prettier --write './**/*.{css,scss,json,md,js,ts,tsx,jsx}'",
+    "scss-lint": "stylelint '**/*.{css,scss}'",
+    "scss-lint-fix": "stylelint '**/*.{css,scss}' --fix"
+  }
+}
