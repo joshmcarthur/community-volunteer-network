@@ -13,6 +13,10 @@ gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
 gem "lograge"
 
+gem "devise"
+gem "devise_invitable"
+gem "devise-bootstrap-views"
+
 gem "rack-canonical-host", "~> 0.2.3"
 
 group :development do
@@ -34,6 +38,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "pry-rails"
   gem "pry-byebug"
+  gem "faker"
 end
 
 group :test do

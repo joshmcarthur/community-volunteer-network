@@ -46,6 +46,13 @@ Layout/LineLength:
     - "config/**/*"
     - "db/**/*"
 
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+
 Metrics/MethodLength:
   Max: 12
   Exclude:

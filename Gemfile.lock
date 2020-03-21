@@ -66,6 +66,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    bcrypt (3.1.13)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
     brakeman (4.8.0)
@@ -91,6 +92,16 @@ GEM
     crass (1.0.6)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    devise (4.7.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+    devise-bootstrap-views (1.1.0)
+    devise_invitable (2.0.1)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     diff-lcs (1.3)
     docile (1.3.2)
     dotenv (2.7.5)
@@ -105,6 +116,8 @@ GEM
     factory_bot_rails (5.1.1)
       factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
+    faker (1.9.1)
+      i18n (>= 0.7)
     ffi (1.12.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -143,6 +156,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
+    orm_adapter (0.5.0)
     overcommit (0.52.1)
       childprocess (>= 0.6.3, < 4)
       iniparse (~> 1.4)
@@ -206,6 +220,9 @@ GEM
     regexp_parser (1.7.0)
     request_store (1.5.0)
       rack (>= 1.4)
+    responders (3.0.0)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rexml (3.2.4)
     rspec-core (3.9.1)
       rspec-support (~> 3.9.1)
@@ -280,6 +297,8 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    warden (1.2.8)
+      rack (>= 2.0.6)
     webdrivers (4.2.0)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
@@ -304,8 +323,12 @@ DEPENDENCIES
   brakeman
   bundler-audit
   capybara (>= 2.15)
+  devise
+  devise-bootstrap-views
+  devise_invitable
   dotenv-rails
   factory_bot_rails
+  faker
   letter_opener
   lighthouse-matchers
   listen (>= 3.0.5)
