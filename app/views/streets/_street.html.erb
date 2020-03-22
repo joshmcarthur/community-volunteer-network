@@ -2,7 +2,16 @@
   <div class="media-body">
     <h5 class="mt-0"><%= street.name %></h5>
     <p>
-      <strong><%= street.memberships.count %> members</strong>
+      <%= content_tag(:strong, pluralize(street.memberships.count, "member")) if street.memberships.any? %>
+      <ul>
+      <% street.social_networks.each do |social| %>
+        <li>
+          <%= link_to social.network.humanize, social.link %>
+        </li>
+      <% end %>
+      </ul>
+
+      <%= link_to "Add a new social network link", new_street_social_network_path(street), class: "btn btn-sm btn-outline-secondary" if policy(street).add_social_network_link? %>
     </p>
   </div>
 </div>

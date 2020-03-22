@@ -1,0 +1,27 @@
+<% provide(:title, @community.name) %>
+<% provide(:subtitle, "This community has #{pluralize(@community.members.count, "members")}") %>
+<% content_for(:masthead, render("application/default_masthead")) %>
+
+<div class="row">
+
+  <% if policy(@community).join? %>
+    <%= link_to "Join this community", "/c/#{@community.slug}/join", class: "mt-4 mb-4 btn btn-block btn-lg btn-primary" %>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <div class="col-lg-8 mt-5 mb-5">
+    <h3 class="mb-4">Ways members of this community can help:</h3>
+    <ul>
+      <% @community.capabilities.uniq.each do |cap| %>
+        <li><%= cap.name %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-lg-4 mt-5 mb-5">
+    <h3 class="mb-4">Street directory</h3>
+    <%= render partial: "streets/street", collection: @community.streets.alphabetic %>
+  </div>
+</div>

@@ -4,4 +4,12 @@ class CommunityPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def show?
+    record.members.include?(user)
+  end
+
+  def join?
+    !record.members.include?(user)
+  end
 end

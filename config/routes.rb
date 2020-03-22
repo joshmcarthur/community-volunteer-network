@@ -11,7 +11,10 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: "users/registrations"
+  }
+
   ##
   # Workaround a "bug" in lighthouse CLI
   #
@@ -41,6 +44,10 @@ Rails.application.routes.draw do
     resources :streets, only: %i[] do
       get "google_place/:place_id" => "streets#google_place", on: :collection
     end
+  end
+
+  resources :streets, only: %i[] do
+    resources :social_networks, controller: :street_social_networks, only: %i[new create]
   end
 
   resources :communities, only: %i[index]

@@ -78,6 +78,35 @@
       </div>
     </nav>
 
+    <% if current_user && flash[:missing_profile_data] %>
+      <div class="mb-0 alert alert-info alert-dismissible ">
+        <div class="container">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h6 class="alert-heading">We're missing some of your details</h6>
+          <p>
+            You've set up most of your account, but we're missing your
+            <% if current_user.attributes["name"].blank? && current_user.phone_number.blank? %>
+              name and phone number.
+            <% elsif current_user.attributes["name"].blank? %>
+              name.
+            <% elsif current_user.phone_number.blank? %>
+              phone number.
+            <% end %>
+          </p>
+          <p>
+            You don't have to provide these details - that's why we don't ask
+            for them when you sign up. If you can provide them though, we can get in touch
+            with you as easily.
+          </p>
+          <p>
+            You can provide these details, if you want, by <%= link_to "editing your profile", edit_user_registration_path %>.
+          </p>
+        </div>
+      </div>
+    <% end %>
+
     <%= render("application/flash") %>
 
 

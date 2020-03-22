@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: %i[name phone_number])
   end
 
+  def after_sign_in_path_for(resource)
+    flash[:missing_profile_data] = current_user.attributes["name"].blank? || current_user.phone_number.blank?
+    resource.communities.count == 1 ? resource.communities.first : communities_path
+  end
+
   private
 
   def http_basic_auth

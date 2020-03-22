@@ -37,3 +37,6 @@ en:
       success: Welcome to the community!
     new:
       already_a_member: You have already become a member of this community
+  street_social_networks:
+    create:
+      success: Thanks for your contribution!

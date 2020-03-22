@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(version: 2020_03_22_044243) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "street_social_networks", force: :cascade do |t|
+    t.string "network"
+    t.bigint "street_id", null: false
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["street_id"], name: "index_street_social_networks_on_street_id"
+  end
+
   create_table "streets", force: :cascade do |t|
     t.string "name", null: false
     t.string "google_places_id"
@@ -123,5 +132,6 @@ ActiveRecord::Schema.define(version: 2020_03_22_044243) do
   add_foreign_key "community_memberships", "users"
   add_foreign_key "community_moderators", "communities"
   add_foreign_key "community_moderators", "users"
+  add_foreign_key "street_social_networks", "streets"
   add_foreign_key "streets", "communities"
 end
