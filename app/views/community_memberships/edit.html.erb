@@ -1,9 +1,9 @@
 <% provide(:title, "Updating your details for #{@community.name}") %>
 <% content_for(:masthead, render("application/default_masthead")) %>
 
+
 <% content_for :head do %>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs7ExkMM1YNgVs_KNQdXPVw-CCvWXNmpo&libraries=places"></script>
-<script>jQuery(function() {
+<script>window.initAutocomplete = function() {
   var el = document.getElementById("community_membership_street");
   if(el) {
     var autocomplete = new google.maps.places.Autocomplete(el, { componentRestrictions: { country: 'nz' }});
@@ -29,8 +29,10 @@
       });
     });
   }
-});
+};
 </script>
+<script type="text/javascript" defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs7ExkMM1YNgVs_KNQdXPVw-CCvWXNmpo&callback=initAutocomplete&libraries=places"></script>
+
 <% end %>
 
 <div class="card mt-5 mb-5 col-lg-6 col-md-8 offset-md-2 offset-lg-3">
