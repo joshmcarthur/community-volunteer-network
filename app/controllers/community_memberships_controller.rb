@@ -14,13 +14,27 @@ class CommunityMembershipsController < AuthenticatedController
     save
   end
 
+  def edit
+    capabilities
+
+    @community_membership = current_user.community_memberships.find_by!(community_id: community)
+    render
+  end
+
+  def update
+    @community_membership = current_user.community_memberships.find_by!(community_id: community)
+    @community_membership.assign_attributes(community_membership_params)
+
+    save
+  end
+
   private
 
   def save
-    redirect_to community_path(community.slug), notice: t(".success") if @community_membership.save
-    capabilities
+    return redirect_to community_path(community.slug), notice: t(".success") if @community_membership.save
 
-    render :new
+    capabilities
+    render @community_membership.persisted? ? :new : :edit
   end
 
   def already_a_member?

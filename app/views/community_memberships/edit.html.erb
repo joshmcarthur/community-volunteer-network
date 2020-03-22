@@ -1,0 +1,78 @@
+<% provide(:title, "Updating your details for #{@community.name}") %>
+<% content_for(:masthead, render("application/default_masthead")) %>
+
+<% content_for :head do %>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs7ExkMM1YNgVs_KNQdXPVw-CCvWXNmpo&libraries=places"></script>
+<script>jQuery(function() {
+  var el = document.getElementById("community_membership_street");
+  if(el) {
+    var autocomplete = new google.maps.places.Autocomplete(el, { componentRestrictions: { country: 'nz' }});
+    autocomplete.setTypes(["address"]);
+    autocomplete.addListener("place_changed", function() {
+      var place = autocomplete.getPlace();
+      if (!place.id) {
+        el.setCustomValidity("Couldn't find this place. Try putting in an exact address.");
+      }
+
+      el.setCustomValidity("");
+
+      var token = $('meta[name="csrf-token"]').attr('content');
+      var streetName = place.address_components.filter(function(c) { return c.types.indexOf("route") >= 0; })[0].long_name;
+      return $.ajax({
+        url: '/c/<%= escape_javascript(@community.slug) %>' + '/streets/google_place/' + place.id,
+        beforeSend: function (xhr) { xhr.setRequestHeader('X-CSRF-Token', token); },
+        data: {street_name: streetName},
+        accept: "application/json"
+      }).then(function(street) {
+        document.getElementById("community_membership_street_id").value = street.id;
+        el.value = streetName;
+      });
+    });
+  }
+});
+</script>
+<% end %>
+
+<div class="card mt-5 mb-5 col-lg-6 col-md-8 offset-md-2 offset-lg-3">
+  <div class="card-body">
+    <%= form_with model: @community_membership, url: community_community_memberships_path, method: :patch do |f| %>
+      <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, name: nil, required: true, readonly: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, name: nil, required: true, readonly: true, class: "form-control" %>
+      <p class="form-text text-muted">
+        We don't share your email, but will use it to contact you
+        with opportunities to receive or give assistance.
+      </p>
+      </div>
+
+      <div class="form-group">
+      <%= f.label :street %>
+      <%= f.text_field :street, value: f.object.street&.name, autocomplete: "new-password", class: "form-control" %>
+      <%= f.hidden_field :street_id, class: "form-control" %>
+
+      <p class="form-text text-muted">
+        <strong>optional.</strong> We don't need to know your exact address, but knowing
+        what street you live on allows us to find opportunities that
+        are close to you, and to help to connect you with other volunteers
+        that are close to you.</p>
+      </div>
+
+      <div class="form-group">
+      <%= f.label :capability_ids, "How are you able to help?" %>
+      <%= f.collection_select :capability_ids, @capabilities, :id, :name, {}, multiple: true, data: { selectize: '{"plugins": ["remove_button"], "selectOnTab": true}' }, class: "form-control" %>
+      <p class="form-text text-muted">
+        Knowing how you can help others allows us to match
+        you up with people seeking this kind of assistance.
+        <br />
+        You can change these later, they're not set in stone.
+      </div>
+
+      <%= f.submit "Update your details for the #{@community.name} community", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+</div>
