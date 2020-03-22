@@ -2,6 +2,38 @@
 <% provide(:subtitle, "Before you join the #{@community.name} community, we need some information from you.") %>
 <% content_for(:masthead, render("application/default_masthead")) %>
 
+<% content_for :head do %>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs7ExkMM1YNgVs_KNQdXPVw-CCvWXNmpo&libraries=places"></script>
+<script>jQuery(function() {
+  var el = document.getElementById("community_membership_street");
+  if(el) {
+    var autocomplete = new google.maps.places.Autocomplete(el, { componentRestrictions: { country: 'nz' }});
+    autocomplete.setTypes(["address"]);
+    autocomplete.addListener("place_changed", function() {
+      var place = autocomplete.getPlace();
+      if (!place.id) {
+        el.setCustomValidity("Couldn't find this place. Try putting in an exact address.");
+      }
+
+      el.setCustomValidity("");
+
+      var token = $('meta[name="csrf-token"]').attr('content');
+      var streetName = place.address_components.filter(function(c) { return c.types.indexOf("route") >= 0; })[0].long_name;
+      return $.ajax({
+        url: '/c/<%= escape_javascript(@community.slug) %>' + '/streets/google_place/' + place.id,
+        beforeSend: function (xhr) { xhr.setRequestHeader('X-CSRF-Token', token); },
+        data: {street_name: streetName},
+        accept: "application/json"
+      }).then(function(street) {
+        document.getElementById("community_membership_street_id").value = street.id;
+        el.value = streetName;
+      });
+    });
+  }
+});
+</script>
+<% end %>
+
 <div class="card mt-5 mb-5 col-lg-6 col-md-8 offset-md-2 offset-lg-3">
   <div class="card-body">
     <%= form_with model: @community_membership, url: community_community_memberships_path, method: :post do |f| %>
@@ -20,8 +52,10 @@
       </div>
 
       <div class="form-group">
-      <%= f.label :street_id %>
-      <%= f.text_field :street_id, class: "form-control" %>
+      <%= f.label :street %>
+      <%= f.text_field :street, autocomplete: "new-password", class: "form-control" %>
+      <%= f.hidden_field :street_id, class: "form-control" %>
+
       <p class="form-text text-muted">
         <strong>optional.</strong> We don't need to know your exact address, but knowing
         what street you live on allows us to find opportunities that

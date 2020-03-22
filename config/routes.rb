@@ -38,10 +38,14 @@ Rails.application.routes.draw do
 
   resources :communities, path: :c, param: :slug, only: %i[show] do
     resource :community_memberships, path: :membership, shallow: true
+    resources :streets, only: %i[] do
+      get "google_place/:place_id" => "streets#google_place", on: :collection
+    end
   end
 
   resources :communities, only: %i[index]
 
+  get "/c/:community_slug/join" => redirect("/c/%{community_slug}/membership/new")
   get "privacy", to: "home#privacy"
   get "terms", to: "home#terms"
   root "home#index"
