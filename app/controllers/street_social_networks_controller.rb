@@ -1,7 +1,7 @@
 class StreetSocialNetworksController < AuthenticatedController
   def new
     street
-    build_social_network
+    @social_network = build_social_network
     render :new
   end
 
