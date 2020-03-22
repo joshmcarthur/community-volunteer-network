@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  protect_from_forgery prepend: true, with: :exception
   before_action :http_basic_auth
 
   private
