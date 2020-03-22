@@ -43,7 +43,10 @@
       <div class="container">
         <a class="navbar-brand" href="/">Community Volunteer Network</a>
         <% if !user_signed_in? %>
-          <a class="btn btn-primary" href="<%= new_user_session_path %>">Sign In</a>
+          <div>
+          <a class="btn btn-primary mr-2" href="<%= new_user_session_path %>">Sign In</a>
+          <a class="btn btn-secondary" href="<%= new_user_registration_path %>">Sign Up</a>
+          </div>
         <% else %>
         <div>
         <ul class="list-inline">

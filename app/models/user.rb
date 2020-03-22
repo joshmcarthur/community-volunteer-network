@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :capabilities, through: :community_memberships, source: :capabilities
 
   def name
-    super.presence || email.split("@").first
+    return super if super.present?
+
+    email.split("@").first if email.present?
   end
 end

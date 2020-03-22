@@ -9,11 +9,13 @@
   <div class="card-body">
         <h5 class="card-title"><%= t(".sign_up") %></h5>
 
+
   <div class="form-group">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
     <%= f.error :email %>
   </div>
+
 
   <div class="form-group">
     <%= f.label :password %>
@@ -24,18 +26,42 @@
     <% end %>
 
     <%= f.error :password %>
-
   </div>
 
   <div class="form-group">
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control' %>
     <%= f.error :password_confirmation %>
-
   </div>
 
   <div class="form-group">
-    <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
+    <%= f.label :name %>
+    <%= f.text_field :name, autocomplete: 'name', class: 'form-control' %>
+    <%= f.error :email %>
+    <p class="form-help text-muted">
+      <strong>optional</strong>
+        Having your name makes it easier to give you a personal
+        experience and for others to know who you are.<br />
+        This doesn't have to be your full name, just whatever you are
+        comfortable being known as.
+    </p>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone_number %>
+    <%= f.telephone_field :phone_number, autocomplete: 'telephone', class: 'form-control' %>
+    <%= f.error :phone_number %>
+    <p class="form-help text-muted">
+      <strong>optional</strong>
+      Sometimes we'll need to get in touch with you directly or urgently.
+      You don't have to provide us with your phone number, but us having it on
+      record can speed up the process of matching people together and can assist
+      if we need to get in touch with you urgently.
+    </p>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit t('.sign_up'), class: 'btn btn-block btn-primary' %>
   </div>
   </div>
 <% end %>
