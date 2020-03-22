@@ -14,12 +14,14 @@ gem "webpacker", "~> 4.0"
 gem "lograge"
 
 gem "pundit"
+gem "cloudinary"
 gem "devise"
 gem "devise_invitable"
 gem "devise-bootstrap-views"
 
 gem "rack-canonical-host", "~> 0.2.3"
 gem "administrate"
+gem 'administrate-field-active_storage'
 gem "factory_bot_rails"
 
 group :development do
