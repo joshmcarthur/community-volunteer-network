@@ -1,6 +1,13 @@
 <% provide(:title, @community.name) %>
 <% content_for(:masthead, render("application/default_masthead")) %>
 
-<div class="mt-5 mb-5">
-<%= render partial: "community_memberships/member", collection: @community.members %>
+<div class="row">
+  <div class="col-lg-8 mt-5 mb-5">
+    <h3 class="mb-4">Community members</h3>
+    <%= render partial: "community_memberships/member", collection: @community.members %>
+  </div>
+  <div class="col-lg-4 mt-5 mb-5">
+    <h3 class="mb-4">Street directory</h3>
+    <%= render partial: "streets/street", collection: @community.streets.alphabetic %>
+  </div>
 </div>

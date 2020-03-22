@@ -3,8 +3,12 @@
   <div class="media-body">
     <h5 class="mt-0"><%= community.name %></h5>
     <%= simple_format community.public_description %>
-    <%= link_to new_community_community_memberships_path(community_slug: community.slug), class: "btn btn-primary" do %>
-      Join this community
+    <% if community.members.where(id: current_user).exists? %>
+      (You are a member of this community)
+    <% else %>
+      <%= link_to new_community_community_memberships_path(community_slug: community.slug), class: "btn btn-primary" do %>
+        Join this community
+      <% end %>
     <% end %>
   </div>
 </div>
