@@ -72,6 +72,8 @@ GEM
     administrate-field-active_storage (0.2.2)
       administrate (>= 0.2.2)
       rails (>= 6.0)
+    administrate-field-enum (0.0.9)
+      administrate (~> 0.12)
     ast (2.4.0)
     autoprefixer-rails (9.7.4)
       execjs
@@ -381,6 +383,7 @@ PLATFORMS
 DEPENDENCIES
   administrate
   administrate-field-active_storage
+  administrate-field-enum
   axe-matchers
   bootsnap (>= 1.4.2)
   brakeman

@@ -22,6 +22,7 @@ gem "devise-bootstrap-views"
 gem "rack-canonical-host", "~> 0.2.3"
 gem "administrate"
 gem 'administrate-field-active_storage'
+gem 'administrate-field-enum'
 gem "factory_bot_rails"
 
 group :development do

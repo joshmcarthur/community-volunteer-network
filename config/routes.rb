@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :users
     resources :communities
-    resources :features
-    resources :streets
     resources :community_memberships
+    resources :streets
+    resources :users
     resources :community_moderators
+    resources :street_social_networks
     resources :capabilities
+    resources :features
 
     root to: "users#index"
   end
