@@ -56,7 +56,7 @@ class StreetDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how streets are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(street)
-  #   "Street ##{street.id}"
-  # end
+  def display_resource(street)
+    "#{street.name} in #{street.community.name}"
+  end
 end
