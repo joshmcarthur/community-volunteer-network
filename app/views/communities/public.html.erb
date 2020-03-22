@@ -1,5 +1,5 @@
 <% provide(:title, @community.name) %>
-<% provide(:subtitle, "This community has #{pluralize(@community.members.count, "members")}") %>
+<% provide(:subtitle, "This community has #{pluralize(@community.members.count, "member")}") %>
 <% content_for(:masthead, render("application/default_masthead")) %>
 
 <div class="row">
