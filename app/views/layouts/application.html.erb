@@ -48,10 +48,10 @@
         <div>
         <ul class="list-inline">
           <li class="list-inline-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="community-selector" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Communities
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="community-selector">
               <% current_user.communities.each do |comm| %>
                 <%= link_to comm.name, community_path(comm.slug), class: "dropdown-item" %>
               <% end %>
@@ -61,12 +61,16 @@
             </div>
           </li>
 
-          <li class="list-inline-item">
-          <span class="navbar-text pr-2">
-            <%= current_user.name %>
-          </span>
-          <%= link_to t(".sign_out"), destroy_user_session_path, class: "btn btn-outline-secondary btn-sm", method: :delete %>
+          <li class="list-inline-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="account-controls" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.name %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="account-controls">
+              <%= link_to 'Edit Profile', edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to 'Sign out', destroy_user_session_path, class: "dropdown-item text-danger", method: :delete %>
+            </div>
           </li>
+
           </ul>
           </div>
         <% end %>
