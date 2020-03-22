@@ -1,6 +1,8 @@
 class CommunityMembershipsController < AuthenticatedController
   def new
     community
+    return redirect_to community_path(community.slug), alert: t(".already_a_member") if already_a_member?
+
     capabilities
     build_community_membership
     render
@@ -8,13 +10,22 @@ class CommunityMembershipsController < AuthenticatedController
 
   def create
     build_community_membership.assign_attributes(community_membership_params)
-    return redirect_to community_path(community.slug), notice: t(".success") if @community_membership.save
 
-    capabilities
-    render :new
+    save
   end
 
   private
+
+  def save
+    redirect_to community_path(community.slug), notice: t(".success") if @community_membership.save
+    capabilities
+
+    render :new
+  end
+
+  def already_a_member?
+    policy_scope(community.memberships).where(user_id: current_user).exists?
+  end
 
   def build_community_membership
     @community_membership = policy_scope(community.memberships).build(user: current_user)
