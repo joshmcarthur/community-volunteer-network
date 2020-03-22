@@ -12,7 +12,7 @@ class CommunityDashboard < Administrate::BaseDashboard
     moderators: Field::HasMany.with_options(class_name: "User"),
     name: Field::String,
     slug: Field::String,
-    public_description: Field::String,
+    public_description: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
@@ -63,5 +63,9 @@ class CommunityDashboard < Administrate::BaseDashboard
   #
   def display_resource(community)
     community.name
+  end
+
+  def decorate_resource(_community)
+    fail "here"
   end
 end
